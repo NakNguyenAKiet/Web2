@@ -32,12 +32,17 @@
 					$pages = ceil($count_product/$productInPage);
 
 					for($i=1;$i<=$pages;$i++){
-						echo '<li class="pages"><a href="?page='.$i.'">'.$i.'</a></li>';
+						// echo '<li class="pages" id="page'.$i.'"><a href="?page='.$i.'">'.$i.'</a></li>';
+						echo '<li class="pages"  id="page'.$i.'" 
+						
+						>'.$i.'</li>';
+
 					}
+					echo "<input id='numPage' type='hidden' value='$pages'/> "
 				?>
 				
 			</ul>
-	      <div class="section group">
+	      <div class="section group" id ="section">
 
 			<?php
 
@@ -62,6 +67,39 @@
 			
     </div>
  </div>
+
+ <style>
+	#section{
+		min-height:500px;
+	}
+ </style>
+ <script>
+			var numPage = document.querySelector("#numPage").value;
+
+			var pages = document.querySelectorAll(".pages")
+
+			console.log(pages);
+
+			for(var i = 0; i < numPage; i++) {
+				console.log(pages[i]);
+				pages[i].onclick = function () {
+					$.ajax({
+					type: "GET",
+					url: "loadproductajax.php",
+					data: "id=" + this.id,
+					success: function (reponse) {
+						$("#section").html(reponse);
+					}
+					});
+				};						
+			}
+			function a(obj) {
+			
+			}
+			
+           
+        
+ </script>
 <?php
 
 	include 'inc/footer.php';
