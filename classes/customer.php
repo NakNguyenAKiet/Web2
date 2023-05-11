@@ -26,17 +26,10 @@
             $city = mysqli_real_escape_string($this->db->link, $data['City']);
             //$zip = mysqli_real_escape_string($this->db->link, $data['Zip-Code']);
             //$country = mysqli_real_escape_string($this->db->link, $data['Country']);
-            $email = mysqli_real_escape_string($this->db->link, $data['Email']);
+            $email = mysqli_real_escape_string($this->db->link, $data['username']);
             $phone = mysqli_real_escape_string($this->db->link, $data['Phone']);
-            $pass = mysqli_real_escape_string($this->db->link, md5($data['Password']));
+            $pass = mysqli_real_escape_string($this->db->link, md5($data['password']));
             $add = mysqli_real_escape_string($this->db->link, $data['Address']);
-
-            $query = "SELECT * from tbl_customer where email='$email'";           
-            $result = $this->db->select($query);
-            if($result){
-                $alert = "<span class = 'successfull' style='color:red'> Email already exist !! </span>";
-                return $alert;
-            }
 
             $query = "INSERT INTO tbl_customer(name,address,city,country,zipcode,phone,email,password)
                 VALUES('$name','$add','$city','VietNam','123','$phone','$email','$pass')";
@@ -46,7 +39,7 @@
                     $alert = "<span class = 'successfull' style='color:green'> Created account successfull !! </span>";
                     return $alert;
                 }else{
-                    $alert = "<span class = 'successfull'> Something wrong !! </span>";
+                    $alert = "<script>alert('sql wrong') </script>";
                     return $alert;
                 }
             
@@ -67,8 +60,7 @@
 
                 //header("Location:index.php");
                 return true;
-            }else{
-                $alert = "<span class = 'successfull' style='color:red'> Email and Password do not match !! </span>";
+            }else{           
                 return false;
             }      
         }
@@ -103,15 +95,15 @@
         }
 
         public function query_check_exist_email($data){
-            $email = mysqli_real_escape_string($this->db->link, $data['Email']);
+            $email = mysqli_real_escape_string($this->db->link, $data['username']);
             $query = "SELECT * from tbl_customer where email='$email'";
                 $result = $this->db->select($query);
                 if($result){
-                    //header("Location:index.php");
-                
+                    //header("Location:index.php");                  
                 return true;
                 }else{
-
+                    $a = $this->insert_customer($data);
+                    $b = $this->check_login($data);
                     return false;
                 }  
         }

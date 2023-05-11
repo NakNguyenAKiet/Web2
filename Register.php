@@ -56,8 +56,8 @@
         type: 'POST', // Phương thức
         // Các dữ liệu
         data: {
-            Email: usernamevl,
-            Password: pass,
+            username: usernamevl,
+            password: pass,
             Phone: phone1,
             Address: add,
             Name: name1,

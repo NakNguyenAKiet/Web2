@@ -13,7 +13,7 @@
     if (isset($_GET["orderid"])) {
         $insertOrder = $cart->insert_order($cusId);
         $delcart = $cart->del_all_cart(); 
-        header("Location:success.php");
+            header("Location:success.php");    
     }
 
     // $checklogin = Session::get('checklogin');

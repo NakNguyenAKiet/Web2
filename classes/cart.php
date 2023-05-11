@@ -106,27 +106,58 @@
 
             return $check;
         }
+
+        public function CreatHoadon($cusId){
+            $query = "insert into hoadon(TongTien, CustomerId) value('0','$cusId')";
+            $result = $this->db->insert($query);
+            if($result){
+
+            }else {
+                echo "<script> alert(\"creat hoa don error\");</script>";
+            }
+        }
     
         public function insert_order($cusId)
         {
+            //tao new hoa don 
+            $this->CreatHoadon($cusId);
+            
+            // lay hoa don moi nhat de them san pham
+            $query = "SELECT * FROM hoadon                        
+             ORDER BY mahd DESC LIMIT 1";
+            $result = $this->db->select($query);
+            $hoadon = $result->fetch_assoc();
+            $mahd = $hoadon['mahd'];
+
+            //them sp vao bang chi tiet hoa don
             $sId = session_Id();
 
             $query = "SELECT * FROM tbl_cart WHERE sId='$sId'";
 
             $products = $this->db->select($query);
 
+            $tongtien = 0;
             if ($products) {
                 while ($product = $products->fetch_assoc()) {
+                    //them sp vao bang chi tiet hoa don
                     $proId = $product["productId"];
-                    $proName = $product["productName"];
                     $quan = $product["quantity"];
-                    $price = $product["price"]*$quan;
-                    $image = $product["image"];
-                    $query = "INSERT INTO tbl_order(productName,productId,price,image,quantity,customerId)
-                    VALUE('$proName','$proId','$price','$image','$quan','$cusId')";
+
+                    //tinh gia * so luon
+                    $price = $product["price"];
+                    $price *= $quan;
+
+                    $query = "INSERT INTO chitiethoadon(productId,mahd, SoLuong)
+                    VALUE('$proId','$mahd','$quan')";
                     $result = $this->db->insert($query);
+
+                    $tongtien += $price;
                 }
             }
+            $tongtien += $tongtien*0.1;
+            $query = "UPDATE hoadon SET TongTien='$tongtien' where mahd='$mahd '";
+            $result = $this->db->update($query);
+
             return $result;
             
         }

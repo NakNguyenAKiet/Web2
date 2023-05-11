@@ -1,5 +1,6 @@
 <?php
     include 'lib/session.php';
+	 Session::init();
     include 'helpers/format.php';
     include 'lib/database.php';
 
