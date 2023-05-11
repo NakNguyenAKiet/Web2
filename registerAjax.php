@@ -10,24 +10,17 @@
 
 	$customer = new customer();
 
+    //$username = $_POST['username'];
 
-    $username = $_POST['username'];
-    $password = $_POST['password'];  
     
     $show_alert = '<script>$("#formJoin .alert").show();</script>'; // Hiển thị thông báo lỗi
-$hide_alert = '<script>$("#formJoin .alert").hide();</script>'; // Ẩn thông báo lỗi
-$success_alert = '<script>$("#formJoin .alert").attr("class", "alert success");</script>'; // Thông báo thành công
+    $hide_alert = '<script>$("#formJoin .alert").hide();</script>'; // Ẩn thông báo lỗi
+    $success_alert = '<script>$("#formJoin .alert").attr("class", "alert success");</script>'; // Thông báo thành công
 // Kiểm tra có tồn tại username
-$query_check_exist_user = $customer->check_login($_POST);
+$query_check_exist_email = $customer->query_check_exist_email($_POST);
  
-// Nếu username hoặc password trống
-if ($username == '' || $password == '') {
-    echo $show_alert . 'Vui lòng điền đầy đủ thông tin bên trên.'; // Thông báo
-}
-// Ngược lại
-else {
     // Nếu tồn tại username thì thực thi đăng nhập
-    if ($query_check_exist_user == true) {
+    if ($query_check_exist_email == false) {
         // Kiểm tra thông tin đăng nhập
             echo $show_alert . $success_alert . 'Đăng nhập thành công.'; // Thông báo
             echo '<script>window.location.reload();</script>';
@@ -36,9 +29,7 @@ else {
         // Ngược lại
     }
         else {
-            echo $show_alert . 'Tên đăng nhập hoặc mật khẩu không chính xác.'; // Thông báo
-        }
-    
-    
-}
+            echo $show_alert . 'email đã tồn tại'; // Thông báo
+        }  
+
 ?>

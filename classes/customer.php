@@ -24,9 +24,9 @@
         {
             $name = mysqli_real_escape_string($this->db->link, $data['Name']);
             $city = mysqli_real_escape_string($this->db->link, $data['City']);
-            $zip = mysqli_real_escape_string($this->db->link, $data['Zip-Code']);
-            $country = mysqli_real_escape_string($this->db->link, $data['Country']);
-            $email = mysqli_real_escape_string($this->db->link, $data['E-Mail']);
+            //$zip = mysqli_real_escape_string($this->db->link, $data['Zip-Code']);
+            //$country = mysqli_real_escape_string($this->db->link, $data['Country']);
+            $email = mysqli_real_escape_string($this->db->link, $data['Email']);
             $phone = mysqli_real_escape_string($this->db->link, $data['Phone']);
             $pass = mysqli_real_escape_string($this->db->link, md5($data['Password']));
             $add = mysqli_real_escape_string($this->db->link, $data['Address']);
@@ -39,7 +39,7 @@
             }
 
             $query = "INSERT INTO tbl_customer(name,address,city,country,zipcode,phone,email,password)
-                VALUES('$name','$add','$city','$country','$zip','$phone','$email','$pass')";
+                VALUES('$name','$add','$city','VietNam','123','$phone','$email','$pass')";
                 $result = $this->db->insert($query);
 
                 if($result){
@@ -100,6 +100,20 @@
                     $alert = "<span class = 'successfull'> Something wrong !! </span>";
                     return $alert;
                 }
+        }
+
+        public function query_check_exist_email($data){
+            $email = mysqli_real_escape_string($this->db->link, $data['Email']);
+            $query = "SELECT * from tbl_customer where email='$email'";
+                $result = $this->db->select($query);
+                if($result){
+                    //header("Location:index.php");
+                
+                return true;
+                }else{
+
+                    return false;
+                }  
         }
     }
 
