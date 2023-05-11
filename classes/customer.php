@@ -54,8 +54,8 @@
 
         public function check_login($data)
         {
-            $user = mysqli_real_escape_string($this->db->link, $data['user']);
-            $pass = mysqli_real_escape_string($this->db->link, md5($data['pass']));
+            $user = mysqli_real_escape_string($this->db->link, $data['username']);
+            $pass = mysqli_real_escape_string($this->db->link, md5($data['password']));
 
             $query = "SELECT * from tbl_customer where email='$user' and password='$pass'";
             $result = $this->db->select($query);
@@ -65,12 +65,12 @@
                 Session::set("username",$customer["name"]);
                 Session::set("customerid",$customer["id"]);
 
-                header("Location:index.php");
+                //header("Location:index.php");
+                return true;
             }else{
                 $alert = "<span class = 'successfull' style='color:red'> Email and Password do not match !! </span>";
-                return $alert;
-            }
-            
+                return false;
+            }      
         }
 
         public function get_by_id($cusId)

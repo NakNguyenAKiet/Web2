@@ -27,11 +27,10 @@
 
 		$listproduct = $pro->get_pro_page($test);
         if($listproduct){
-            while ($product = $listproduct->fetch_assoc()) {
-                    
+            while ($product = $listproduct->fetch_assoc()) { 
     ?>
         <div class="grid_1_of_4 images_1_of_4">
-                <a href="preview-3.php"><img style="height:220px" src="admin/uploads/<?php echo $product['image']?>" alt="" /></a>
+                <a href="details.php?proid=<?php echo $product['productId'] ?>"><img style="height:220px" src="admin/uploads/<?php echo $product['image']?>" alt="" /></a>
                 <h2><?php echo $product['productName']; ?> </h2>
                 <?php echo $fm->textShorten($product['productDesc'],30); ?>
                 <p><span class="price"><?php echo $product['price']; ?> .đ</span></p>

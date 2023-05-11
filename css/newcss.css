@@ -90,10 +90,12 @@ ul.dc_mm-orange li .sub-container.non-mega li a:hover {
 }
 
 .login_buton{
+    display: block !important;
     cursor: pointer;
     background: #ffb70f;
         padding: 10px;
-        margin-top: 2p;
+        margin: auto;
+        margin-top: 2px;
         border: 4px solid #ffb70f;
         border-radius: 20px;
 }

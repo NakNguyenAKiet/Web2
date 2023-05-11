@@ -47,7 +47,7 @@
 <link href="css/newcss.css" rel="stylesheet" type="text/css" media="all"/>
 
 <link href="css/themify-icons/themify-icons.css" rel="stylesheet" type="text/css" media="all"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 
 <script src="js/jquerymain.js"></script>
 <script src="js/script.js" type="text/javascript"></script>
