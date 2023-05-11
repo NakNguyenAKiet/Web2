@@ -168,6 +168,34 @@
                 return '<span style="color: red">Something wrong !!!</span>';               
             }
         }
+
+        public function get_all_statistic(){
+            $query = "SELECT * FROM tbl_statistic";
+            $result = $this->db->select($query);
+            return $result;
+        }
+    
+        public function insert_statistic($id){
+            $query = "SELECT * FROM tbl_order WHERE Id='$id'";
+    
+            $result1 = $this->db->select($query);
+            $result = false;
+            if($result1){
+                while($order = $result1->fetch_assoc()){
+                    $proId = $order["productId"];
+                    $proName = $order["productName"];
+                    $cusId = $order["customerId"];
+                    $quan = $order["quantity"];
+                    $price = $order["price"];
+                    $image = $order["image"];
+                    $date_order = $order["date_order"]; 
+                    $query = "INSERT INTO tbl_statistic(productName,productId,price,image,quantity,customerId,date_order)
+                    VALUE('$proName','$proId','$price','$image','$quan','$cusId','$date_order')";
+                    $result = $this->db->insert($query);
+                }
+            }
+            return $result;
+        }
     }
     
 

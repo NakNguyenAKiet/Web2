@@ -51,8 +51,7 @@
                     <img src="img/livelogo.png" alt="Logo" />
 				</div>
 				<div class="floatleft middle">
-					<h1>Training with live project</h1>
-					<p>www.trainingwithliveproject.com</p>
+                    <h1>Nak Shop</h1>
 				</div>
                 <div class="floatright">
                     <div class="floatleft">
@@ -84,6 +83,7 @@
 				<li class="ic-typography"><a href="changepassword.php"><span>Change Password</span></a></li>
 				<li class="ic-grid-tables"><a href="inbox.php"><span>Inbox</span></a></li>
                 <li class="ic-charts"><a href=""><span>Visit Website</span></a></li>
+                <li class="ic-form-style"><a href="statistic.php"><span>Statistic</span></a></li>
             </ul>
         </div>
         <div class="clear">

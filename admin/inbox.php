@@ -14,6 +14,7 @@
 	
 	if(isset($_GET["shiftId"])){
 		$shifted = $cart->set_shifted($_GET["shiftId"]);
+		$statistic = $cart->insert_statistic($_GET["shiftId"]);
 	}
 
 	if(isset($_GET["delId"])){

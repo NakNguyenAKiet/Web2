@@ -312,6 +312,24 @@
                     return $alert;
                 }
         }
+
+        public function getOppo(){
+            $query = "SELECT * FROM tbl_product where brandId='6' Limit 4";
+            $result = $this->db->select($query);
+            return $result;
+        }
+        
+        public function getSS(){
+            $query = "SELECT * FROM tbl_product where brandId='3' Limit 4";
+            $result = $this->db->select($query);
+            return $result;
+        }
+
+        public function getDell(){
+            $query = "SELECT * FROM tbl_product where brandId='1' Limit 4";
+            $result = $this->db->select($query);
+            return $result;
+        }
         
     }
     

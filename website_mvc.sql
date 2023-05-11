@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 10, 2023 lúc 10:04 AM
+-- Thời gian đã tạo: Th5 11, 2023 lúc 07:51 AM
 -- Phiên bản máy phục vụ: 10.4.27-MariaDB
 -- Phiên bản PHP: 8.2.0
 
@@ -82,16 +82,6 @@ CREATE TABLE `tbl_cart` (
   `quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Đang đổ dữ liệu cho bảng `tbl_cart`
---
-
-INSERT INTO `tbl_cart` (`cartId`, `productId`, `productName`, `sId`, `price`, `image`, `quantity`) VALUES
-(30, 19, 'camera hidden', 'o03l0fg57ituhinf6nu1bqcebf', '2000', '58c71baba8.jpg', 1),
-(31, 19, 'camera hidden', 'fc86mma5s9eiqh7goqpte8677j', '2000', '58c71baba8.jpg', 1),
-(33, 13, 'Cannon 5DHS', 'fc86mma5s9eiqh7goqpte8677j', '4000000', '171e8a1875.jpg', 1),
-(34, 18, 'Macbook M10 pro', 'ceqqasj8rdjgjs7l4re08560l5', '1', 'a46dfec5f6.jpg', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -140,7 +130,10 @@ CREATE TABLE `tbl_customer` (
 
 INSERT INTO `tbl_customer` (`id`, `name`, `address`, `city`, `country`, `zipcode`, `phone`, `email`, `password`) VALUES
 (3, 'NAK123', '183/36 Nguyễn Hữu Cảnh', 'Quận Bình Thạnh', 'VN', '28', '+84835973152', 'anhkietdepcmntrai@gmail.com', 'c4ca4238a0b923820dcc509a6f75849b'),
-(4, 'Ngô Minh Hoàng', '101/19 Nguyễn Chí Thanh', 'TP. Hồ Chí Minh', 'VN', '76500', '0935437599', 'hoanglikeaboss@gmail.com', '25f9e794323b453885f5181f1b624d0b');
+(4, 'DD', 'dsa', 'HCM', 'null', 'dsa', 'das', 'asd', 'e10adc3949ba59abbe56e057f20f883e'),
+(5, 'DD123', 'sda', 'HCM', 'VN', '21', '1234567890', 'sda', 'e10adc3949ba59abbe56e057f20f883e'),
+(6, 'DD', 'Aas', 'HCM', 'VN', '21', 'aerw', 'as', '5d153c645b182f24f3c0c06df9523622'),
+(7, 'anh', '1', '1', 'VN', '1', '1', 'anh', 'c4ca4238a0b923820dcc509a6f75849b');
 
 -- --------------------------------------------------------
 
@@ -165,7 +158,15 @@ CREATE TABLE `tbl_order` (
 --
 
 INSERT INTO `tbl_order` (`id`, `customerId`, `productId`, `productName`, `quantity`, `image`, `price`, `date_order`, `status`) VALUES
-(3, 3, 17, 'Camera', 5, 'db76baa730.jpg', '2500', '2023-02-28 03:02:12', 1);
+(15, 5, 27, 'Macbook Pro 13 M2', 2, '7be8be82b5.jpg', '59380000', '2023-05-10 08:48:16', 1),
+(16, 5, 22, 'Iphone 13 258Gb', 1, '443c0934de.jpg', '34299000', '2023-05-10 08:48:25', 1),
+(17, 5, 26, 'Camera Canon R7', 1, '6514a3cfa2.jpg', '7990000', '2023-05-10 08:49:26', 1),
+(18, 5, 25, 'Oppo A16K', 1, 'eab44affb6.jpg', '2799000', '2023-05-10 08:49:35', 1),
+(19, 7, 31, 'Dell Gaming', 1, 'c5dba85152.jpg', '26990000', '2023-05-10 10:12:44', 0),
+(20, 7, 30, 'Macbook Air M2', 1, '45abb2c783.jpg', '39690000', '2023-05-10 10:12:44', 0),
+(21, 7, 22, 'Iphone 13 258Gb', 1, '443c0934de.jpg', '34299000', '2023-05-10 10:14:13', 0),
+(22, 7, 30, 'Macbook Air M2', 1, '45abb2c783.jpg', '39690000', '2023-05-10 10:14:51', 0),
+(23, 7, 24, 'SamSum Galaxy Z Flip4 5G', 1, 'b47c703cea.jpg', '27990000', '2023-05-10 10:14:51', 0);
 
 -- --------------------------------------------------------
 
@@ -189,15 +190,18 @@ CREATE TABLE `tbl_product` (
 --
 
 INSERT INTO `tbl_product` (`productId`, `productName`, `catId`, `brandId`, `productDesc`, `type`, `price`, `image`) VALUES
-(9, 'Macbook Mk14', 16, 4, '<p>This is the Description of Macbook Mk14</p>', 1, '2000', '5826bda646.jpg'),
-(12, 'Iphone 6s', 14, 8, '<p>iPhone 6s xứng đáng là phiên bản nâng cấp hoàn hảo từ chiếc điện thoại thông minh iPhone 6 với nhiều tính năng mới hấp dẫn.</p>', 1, '300', '4622cdb5b3.png'),
-(13, 'Cannon 5DHS', 19, 3, '<p>Canon 5DHS ra mắt đánh dấu trào lưu của một thế hệ máy ảnh kỹ thuật số SLR full - frame chất lượng cao, tính năng tiện dụng trên thị trường. Một thế hệ máy ảnh kỹ thuật số SLR mới? Canon 5DHS dòng máy ảnh kỹ thuật số SLR full-frame thứ hai của Canon với Thiết kế hộp gương mở rộng, kính ngắm, nhẹ nhất, cảm biến và giá cả rẻ nhất. Cảm biến ảnh cỡ full-frame của Canon 5D với độ phân giải 12,8 megapixel cung cấp chất lượng hình ảnh tuyệt vời ở một mức giá tuyệt vời.</p>', 0, '1600', '171e8a1875.jpg'),
-(14, 'Macbook M1 pro', 16, 4, '<p><span>The MacBook family was initially housed in designs similar to the iBook and PowerBook lines which preceded them, now making use of a unibody&nbsp;</span><a title=\"Aluminium\" href=\"https://en.wikipedia.org/wiki/Aluminium\">aluminum</a><span>&nbsp;construction first introduced with the MacBook Air. This new construction also has a black plastic keyboard that was first used on the MacBook Air, which itself was inspired by the sunken keyboard of the original polycarbonate MacBooks. The now standardized keyboard brings congruity to the MacBook line, with black keys on a metallic aluminum body.</span></p>', 1, '4000', 'd3d08bb439.jpg'),
-(15, 'Pro Test 3', 18, 1, '<p><span>This is the description of Pro Test 3</span></p>', 1, '500', 'c8d2743a1b.jpg'),
-(16, 'Galaxy S23 Ultra', 14, 3, '<p><span>Samsung Galaxy S23&nbsp;</span><span>l&agrave; phi&ecirc;n bản tiếp theo sắp được Samsung cho ra mắt thị trường. Sở hữu diện mạo tinh tế mới mẻ đi đầu xu hướng, b&ecirc;n cạnh đ&oacute; l&agrave; m&agrave;n h&igrave;nh chất lượng, hiệu năng mạnh mẽ v&agrave; cụm camera si&ecirc;u chất sẽ mang tới những trải nghiệm ấn tượng cho người d&ugrave;ng ngay từ lần chạm đầu ti&ecirc;n.</span></p>\r\n<div class=\"ddict_btn\" style=\"top: 10px; left: 529.318px;\"><img src=\"chrome-extension://bpggmmljdiliancllaapiggllnkbjocb/logo/48.png\" alt=\"\" /></div>', 1, '1300', '6fd9ac0f3c.png'),
-(17, 'Camera', 19, 7, '<p>Camera canon B650 full xlm white B extra</p>', 1, '500', 'db76baa730.jpg'),
-(18, 'Macbook M10 pro', 16, 4, '<p>mThis is the description of Macbook M10 Pro</p>', 1, '2000', 'a46dfec5f6.jpg'),
-(19, 'camera hidden', 19, 7, '<p>camera hiddencamera hiddencamera hiddencamera hiddencamera hiddencamera hidden</p>', 1, '2000', '58c71baba8.jpg');
+(16, 'Galaxy S23 Ultra', 14, 3, '<p><span>Samsung Galaxy S23&nbsp;</span><span>l&agrave; phi&ecirc;n bản tiếp theo sắp được Samsung cho ra mắt thị trường. Sở hữu diện mạo tinh tế mới mẻ đi đầu xu hướng, b&ecirc;n cạnh đ&oacute; l&agrave; m&agrave;n h&igrave;nh chất lượng, hiệu năng mạnh mẽ v&agrave; cụm camera si&ecirc;u chất sẽ mang tới những trải nghiệm ấn tượng cho người d&ugrave;ng ngay từ lần chạm đầu ti&ecirc;n.</span></p>\r\n<div class=\"ddict_btn\" style=\"top: 10px; left: 529.318px;\"><img src=\"chrome-extension://bpggmmljdiliancllaapiggllnkbjocb/logo/48.png\" alt=\"\" /></div>', 1, '4', '13245e95d6.jpg'),
+(20, 'Samsung Galaxy Z Fold 3', 14, 3, '<p>Samsung Galaxy Z Fold 3 l&agrave; phi&ecirc;n bản tiếp theo sắp được Samsung cho ra mắt thị trường. Sở hữu diện mạo tinh tế mới mẻ đi đầu xu hướng, b&ecirc;n cạnh đ&oacute; l&agrave; m&agrave;n h&igrave;nh chất lượng, hiệu năng mạnh mẽ v&agrave; cụm camera si&ecirc;u chất sẽ mang tới những trải nghiệm ấn tượng cho người d&ugrave;ng ngay từ lần chạm đầu ti&ecirc;n.</p>', 1, '19.700.000', '438fac706e.jpg'),
+(21, 'Iphone 14 Pro Max', 14, 8, '<p>Iphone 14 Pro Max l&agrave; phi&ecirc;n bản tiếp theo sắp được Samsung cho ra mắt thị trường. Sở hữu diện mạo tinh tế mới mẻ đi đầu xu hướng, b&ecirc;n cạnh đ&oacute; l&agrave; m&agrave;n h&igrave;nh chất lượng, hiệu năng mạnh mẽ v&agrave; cụm camera si&ecirc;u chất sẽ mang tới những trải nghiệm ấn tượng cho người d&ugrave;ng ngay từ lần chạm đầu ti&ecirc;n.</p>', 0, '27990000', '9e3d4d4de6.jpg'),
+(22, 'Iphone 13 258Gb', 14, 8, '<p>Iphone 14 Pro Max l&agrave; phi&ecirc;n bản tiếp theo sắp được Samsung cho ra mắt thị trường. Sở hữu diện mạo tinh tế mới mẻ đi đầu xu hướng, b&ecirc;n cạnh đ&oacute; l&agrave; m&agrave;n h&igrave;nh chất lượng, hiệu năng mạnh mẽ v&agrave; cụm camera si&ecirc;u chất sẽ mang tới những trải nghiệm ấn tượng cho người d&ugrave;ng ngay từ lần chạm đầu ti&ecirc;n.</p>', 0, '34299000', '443c0934de.jpg'),
+(23, 'Samsung Galaxy Z Fold 3', 14, 3, '<p>Samsung Galaxy Z Fold 3</p>', 1, '18.700.000', '628fd6e18b.jpg'),
+(24, 'SamSum Galaxy Z Flip4 5G', 14, 3, '<p>SamSum Galaxy Z Flip4 5G</p>', 0, '27990000', 'b47c703cea.jpg'),
+(25, 'Oppo A16K', 14, 6, '<p>The Oppo family was initially housed in designs similar to the iBook and PowerBook lines which preceded them, now making use of a unibody&nbsp;<a title=\"Aluminium\" href=\"https://en.wikipedia.org/wiki/Aluminium\">aluminum</a>&nbsp;construction first introduced with the MacBook Air. This new construction also has a black plastic keyboard that was first used on the MacBook Air, which itself was inspired by the sunken keyboard of the original polycarbonate MacBooks. The now standardized keyboard brings congruity to the MacBook line, with black keys on a metallic aluminum body.</p>', 0, '2799000', 'eab44affb6.jpg'),
+(26, 'Camera Canon R7', 19, 7, '<p>The Canon R7&nbsp;now making use of a unibody&nbsp;<a title=\"Aluminium\" href=\"https://en.wikipedia.org/wiki/Aluminium\">aluminum</a>&nbsp;construction first introduced with the MacBook Air. This new construction also has a black plastic keyboard that was first used on the MacBook Air, which itself was inspired by the sunken keyboard of the original polycarbonate MacBooks. The now standardized keyboard brings congruity to the MacBook line, with black keys on a metallic aluminum body.</p>', 0, '7990000', '6514a3cfa2.jpg'),
+(27, 'Macbook Pro 13 M2', 16, 4, '<p>Macbook Pro 13 M2&nbsp;l&agrave; phi&ecirc;n bản tiếp theo sắp được Macbook cho ra mắt thị trường. Sở hữu diện mạo tinh tế mới mẻ đi đầu xu hướng, b&ecirc;n cạnh đ&oacute; l&agrave; m&agrave;n h&igrave;nh chất lượng, hiệu năng mạnh mẽ v&agrave; cụm camera si&ecirc;u chất sẽ mang tới những trải nghiệm ấn tượng cho người d&ugrave;ng ngay từ lần chạm đầu ti&ecirc;n.</p>', 0, '29690000', '7be8be82b5.jpg'),
+(30, 'Macbook Air M2', 16, 4, '<p>MacBook m2 l&agrave; phi&ecirc;n bản tiếp theo sắp được cho ra mắt thị trường. Sở hữu diện mạo tinh tế mới mẻ đi đầu xu hướng, b&ecirc;n cạnh đ&oacute; l&agrave; m&agrave;n h&igrave;nh chất lượng, hiệu năng mạnh mẽ v&agrave; cụm camera si&ecirc;u chất sẽ mang tới những trải nghiệm ấn tượng cho người d&ugrave;ng ngay từ lần chạm đầu ti&ecirc;n.</p>', 1, '39690000', '45abb2c783.jpg'),
+(31, 'Dell Gaming', 16, 1, '<p>Dell l&agrave; phi&ecirc;n bản tiếp theo sắp được Dell cho ra mắt thị trường. Sở hữu diện mạo tinh tế mới mẻ đi đầu xu hướng, b&ecirc;n cạnh đ&oacute; l&agrave; m&agrave;n h&igrave;nh chất lượng, hiệu năng mạnh mẽ v&agrave; cụm camera si&ecirc;u chất sẽ mang tới những trải nghiệm ấn tượng cho người d&ugrave;ng ngay từ lần chạm đầu ti&ecirc;n.</p>', 1, '26990000', 'c5dba85152.jpg'),
+(33, 'Dell XPS 17 9710', 16, 1, '<p>Dell XPS 17 9710 / Core i7-11800H-16GBl&agrave; phi&ecirc;n bản tiếp theo sắp được dell cho ra mắt thị trường. Sở hữu diện mạo tinh tế mới mẻ đi đầu xu hướng, b&ecirc;n cạnh đ&oacute; l&agrave; m&agrave;n h&igrave;nh chất lượng, hiệu năng mạnh mẽ v&agrave; cụm camera si&ecirc;u chất sẽ mang tới những trải nghiệm ấn tượng cho người d&ugrave;ng ngay từ lần chạm đầu ti&ecirc;n.</p>', 1, '39690000', '848ece94eb.jpg');
 
 -- --------------------------------------------------------
 
@@ -219,8 +223,39 @@ CREATE TABLE `tbl_slider` (
 INSERT INTO `tbl_slider` (`id`, `title`, `image`, `type`) VALUES
 (6, 'test 1', 'e2fc13a250.jpg', 0),
 (8, 'nak market', '8b3f7b32bf.png', 0),
-(9, 'Nak', 'b110ad2426.png', 1),
-(10, 'Nak', '8958dc6d98.jpg', 1);
+(9, 'Nak', 'b110ad2426.png', 0),
+(10, 'Nak', '8958dc6d98.jpg', 0),
+(11, 'Slide1', '3493d534c7.jpg', 1),
+(12, 'Slide', '9cf1cdc18d.jpg', 1),
+(13, 'Slide3', '3e25dbb7b0.jpg', 1),
+(14, 'Silde4', '9c8a725860.jpg', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `tbl_statistic`
+--
+
+CREATE TABLE `tbl_statistic` (
+  `id` int(11) NOT NULL,
+  `customerId` int(11) UNSIGNED NOT NULL,
+  `productId` int(11) UNSIGNED NOT NULL,
+  `productName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `image` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `price` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `date_order` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `tbl_statistic`
+--
+
+INSERT INTO `tbl_statistic` (`id`, `customerId`, `productId`, `productName`, `quantity`, `image`, `price`, `date_order`) VALUES
+(11, 5, 27, 'Macbook Pro 13 M2', 2, '7be8be82b5.jpg', '59380000', '2023-05-10 08:48:16'),
+(12, 5, 22, 'Iphone 13 258Gb', 1, '443c0934de.jpg', '34299000', '2023-04-10 08:48:25'),
+(13, 5, 26, 'Camera Canon R7', 1, '6514a3cfa2.jpg', '7990000', '2023-05-10 08:49:26'),
+(14, 5, 25, 'Oppo A16K', 1, 'eab44affb6.jpg', '2799000', '2023-04-10 08:49:35');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -280,6 +315,12 @@ ALTER TABLE `tbl_slider`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Chỉ mục cho bảng `tbl_statistic`
+--
+ALTER TABLE `tbl_statistic`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT cho các bảng đã đổ
 --
 
@@ -287,7 +328,7 @@ ALTER TABLE `tbl_slider`
 -- AUTO_INCREMENT cho bảng `tbl_admin`
 --
 ALTER TABLE `tbl_admin`
-  MODIFY `adminId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `adminId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_brand`
@@ -299,7 +340,7 @@ ALTER TABLE `tbl_brand`
 -- AUTO_INCREMENT cho bảng `tbl_cart`
 --
 ALTER TABLE `tbl_cart`
-  MODIFY `cartId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `cartId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_category`
@@ -311,25 +352,31 @@ ALTER TABLE `tbl_category`
 -- AUTO_INCREMENT cho bảng `tbl_customer`
 --
 ALTER TABLE `tbl_customer`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_order`
 --
 ALTER TABLE `tbl_order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_product`
 --
 ALTER TABLE `tbl_product`
-  MODIFY `productId` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `productId` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_slider`
 --
 ALTER TABLE `tbl_slider`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT cho bảng `tbl_statistic`
+--
+ALTER TABLE `tbl_statistic`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
