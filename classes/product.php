@@ -28,10 +28,21 @@
             return $result;
         }
 
-        public function search_product($data)
+        public function getbyallinformation($data)
         {
-            $keyword = $this->fm->validation($data['keyword']);
-            $query = "SELECT * from tbl_product where productName LIKE '%$keyword%'";
+            $cat = $data["category"];
+            $from = $data["pricefrom"];
+            $to = $data["priceto"];
+            $key = $data["keyword"];
+            if($from == ''){
+            $from = '1';
+            }
+
+            $from1 = (string)$from;
+            if($to == '') $to = '1000000000';
+
+            $to1 = (string)$to;
+            $query = "SELECT * from tbl_product where productName LIKE '%$key%' AND catId LIKE '%$cat%' AND price >= '$from1' AND price <= '$to1'";
             $result = $this->db->select($query);
             return $result;
         }

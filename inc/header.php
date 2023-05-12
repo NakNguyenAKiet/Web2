@@ -77,10 +77,8 @@
 			<div class="logo">
 				<a href="index.php"><span class="sign">Nak Shop</span></a>
 			</div>
-			  <div class="header_top_right">
-			    
+			  <div class="header_top_right">	
 				
-					
 					<div class="login">
 						<?php
 							if($checkLogin){
@@ -90,8 +88,7 @@
 							}
 						?>			
 					</div>
-					<?php
-					
+					<?php					
 						if($checkLogin){
 							$cusId =   Session::get('customerid');  
     						$cus = $customer->get_by_id($cusId);
@@ -104,52 +101,8 @@
 					?>	
 		 <div class="clear"></div>
 	 	</div>
-		<div class="search_nav">
-			<div>
-				<span>Brand:</span>
-				<select id="select" name="brand">
-					<option>Select Brand</option>
-					<?php
-						$brand = new brand();
-						$brandlist = $brand->show_brand();
-	
-						if($brandlist){
-							while ($brandresult = $brandlist->fetch_assoc()) {
-																
-					?>
-						<option value="<?php echo $brandresult['brandId']?>"><?php echo $brandresult['brandName']?></option>
-					<?php
-							}
-						}                          
-					?>
-				</select>
-			</div>
-			<div>
-				<span>Category:</span>
-				<select id="select" name="category">                       
-                            <option>Select Category</option>
-                            <?php
-                                $cat = new category();
-                                $catlist = $cat->show_category();
-
-                                if($catlist){
-                                    while ($result = $catlist->fetch_assoc()) {
-                                                                       
-                            ?>
-                                <option value="<?php echo $result['catId']?>"><?php echo $result['catName']?></option>
-                            <?php
-                                    }
-                                }                          
-                            ?>
-                        </select>
-			</div>
-			<div class="search_box">
-				<form method="post" action="search.php">
-					<input type="text" placeholder="Search for Products" name="keyword">
-					<input type="submit" value="SEARCH" name="search">															    
-				</form>
-			</div>
-			<div class="wrapp-cart">					
+		 <div class="clear"></div>
+		 <div class="wrapp-cart">					
 				<div class="cart-icon">
 				<a href="cart.php">
 					<i class="ti-shopping-cart"></i>
@@ -172,12 +125,13 @@
 							</span>
 						</a>
 				</div>
-			</div>
+			</div>		
 		</div>
-	 <div class="clear"></div>
- </div>
+		 <div class="clear"></div>
+
 <div class="menu">
 	<ul id="dc_mega-menu-orange" class="dc_mm-orange">
+	  <li><a href="search.php">Search</a> </li>
 	  <li><a href="index.php">Home</a></li>
 	  <li><a href="products.php">Products</a> </li>
 	  <li><a href="#">Category</a> 
@@ -210,6 +164,9 @@
 	  ?>
 	  
 	  <li><a href="contact.php">Contact</a> </li>
+	  
 	  <div class="clear"></div>
 	</ul>
 </div>
+
+<!-- <script > alert(document.getElementById('select_category').value)</script> -->
