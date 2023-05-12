@@ -78,36 +78,7 @@
 				<a href="index.php"><span class="sign">Nak Shop</span></a>
 			</div>
 			  <div class="header_top_right">
-			    <div class="search_box">
-				    <form method="post" action="search.php">
-				    	<input type="text" placeholder="Search for Products" name="keyword">
-						<input type="submit" value="SEARCH" name="search">															    
-					</form>
-			    </div>
-			    <div class="wrapp-cart">					
-					<div class="cart-icon">
-					<a href="cart.php">
-						<i class="ti-shopping-cart"></i>
-					</a>
-					</div>
-					<div class="cart">
-						<a href="cart.php" title="View my shopping cart" rel="nofollow">
-								
-								<span class="no_product">
-  	                            <?php
-									$check_cart = $cart->check_cart();
-									if($check_cart){
-										$ProInCart = Session::get("ProInCart");
-										echo '<a class="product_cart"> '.$ProInCart.'</a>';
-									}else {
-										echo '<a class="product_cart"> 0 </a>';
-									}
-								?>
-									
-								</span>
-							</a>
-					</div>
-			    </div>
+			    
 				
 					
 					<div class="login">
@@ -133,13 +104,83 @@
 					?>	
 		 <div class="clear"></div>
 	 	</div>
+		<div class="search_nav">
+			<div>
+				<span>Brand:</span>
+				<select id="select" name="brand">
+					<option>Select Brand</option>
+					<?php
+						$brand = new brand();
+						$brandlist = $brand->show_brand();
+	
+						if($brandlist){
+							while ($brandresult = $brandlist->fetch_assoc()) {
+																
+					?>
+						<option value="<?php echo $brandresult['brandId']?>"><?php echo $brandresult['brandName']?></option>
+					<?php
+							}
+						}                          
+					?>
+				</select>
+			</div>
+			<div>
+				<span>Category:</span>
+				<select id="select" name="category">                       
+                            <option>Select Category</option>
+                            <?php
+                                $cat = new category();
+                                $catlist = $cat->show_category();
+
+                                if($catlist){
+                                    while ($result = $catlist->fetch_assoc()) {
+                                                                       
+                            ?>
+                                <option value="<?php echo $result['catId']?>"><?php echo $result['catName']?></option>
+                            <?php
+                                    }
+                                }                          
+                            ?>
+                        </select>
+			</div>
+			<div class="search_box">
+				<form method="post" action="search.php">
+					<input type="text" placeholder="Search for Products" name="keyword">
+					<input type="submit" value="SEARCH" name="search">															    
+				</form>
+			</div>
+			<div class="wrapp-cart">					
+				<div class="cart-icon">
+				<a href="cart.php">
+					<i class="ti-shopping-cart"></i>
+				</a>
+				</div>
+				<div class="cart">
+					<a href="cart.php" title="View my shopping cart" rel="nofollow">
+							
+							<span class="no_product">
+							<?php
+								$check_cart = $cart->check_cart();
+								if($check_cart){
+									$ProInCart = Session::get("ProInCart");
+									echo '<a class="product_cart"> '.$ProInCart.'</a>';
+								}else {
+									echo '<a class="product_cart"> 0 </a>';
+								}
+							?>
+								
+							</span>
+						</a>
+				</div>
+			</div>
+		</div>
 	 <div class="clear"></div>
  </div>
 <div class="menu">
 	<ul id="dc_mega-menu-orange" class="dc_mm-orange">
 	  <li><a href="index.php">Home</a></li>
 	  <li><a href="products.php">Products</a> </li>
-	  <li><a href="products.php">Category</a> 
+	  <li><a href="#">Category</a> 
 	  	<ul>
 			<?php
 				$listCat = $cat->show_category();
@@ -161,7 +202,7 @@
 	  <?php
 	  
 		if($checkLogin == true){
-			echo "<li><a href='orderdetail.php'>Ordered</a></li>";
+			echo "<li><a href='ordered.php'>Ordered</a></li>";
 	  		echo "<li><a href='profile.php'>Profile</a></li>";
 		}else{
 			echo "";

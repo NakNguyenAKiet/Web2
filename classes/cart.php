@@ -147,8 +147,8 @@
                     $price = $product["price"];
                     $price *= $quan;
 
-                    $query = "INSERT INTO chitiethoadon(productId,mahd, SoLuong)
-                    VALUE('$proId','$mahd','$quan')";
+                    $query = "INSERT INTO chitiethoadon(productId,mahd, SoLuong, TongGia)
+                    VALUE('$proId','$mahd','$quan',' $price')";
                     $result = $this->db->insert($query);
 
                     $tongtien += $price;
@@ -172,6 +172,19 @@
         public function get_all_order()
         {
             $query = "SELECT * FROM tbl_order";
+            $result = $this->db->select($query);
+            return $result;
+        }
+
+        public function get_ordered($cusId){
+            $query = "SELECT * FROM hoadon WHERE CustomerId='$cusId'";
+            $result = $this->db->select($query);
+            return $result;
+        }
+
+        public function getDetailOrder($mahd){
+            $query ="SELECT * FROM `tbl_product` a,chitiethoadon c WHERE 
+            a.productId = c.productId and c.mahd = '$mahd' ";
             $result = $this->db->select($query);
             return $result;
         }

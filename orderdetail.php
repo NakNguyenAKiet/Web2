@@ -4,6 +4,12 @@
 
     $cusId =   Session::get('customerid');
 
+	if(isset($_GET['orderid']) && $_GET['orderid']!=NULL){
+				$orderid = $_GET['orderid'];
+			}else{
+				echo "<script> window.location = '404.php'</script>";
+			}
+
 ?>
 <style>
     h2{
@@ -22,15 +28,13 @@
 						<table class="tblone">
 							<tr>
 								<th width="20%">Product Name</th>
-								<th width="10%">Image</th>
-								<th width="15%">Price</th>
-								<th width="10%">Quantity</th>
-								<th width="10%">Total Price</th>
-								<th width="25%">Date</th>
-								<th width="10%">Status</th>
+								<th width="20%">Image</th>
+								<th width="20%">Price</th>
+								<th width="20%">Quantity</th>
+								<th width="20%">Total Price</th>
 							</tr>
 							<?php
-								$get_pro_ordered = $cart->get_pro_ordered($cusId);
+								$get_pro_ordered = $cart->getDetailOrder($orderid);
 
 								if($get_pro_ordered){
 									while ($pro = $get_pro_ordered->fetch_assoc()) {																			
@@ -40,23 +44,14 @@
 								<td><img src="admin/uploads/<?php echo $pro['image']?>" alt=""/></td>
 								<td><?php echo $pro["price"]?></td>
 								<td>
-										<?php echo $pro["quantity"]?>
+										<?php echo $pro["SoLuong"]?>
 								</td>
 								<td> 
 								<?php
-									$total = $pro["quantity"]*	$pro["price"];
+									$total = $pro["SoLuong"]*	$pro["price"];
 									echo $total;							
 								?></td>
-								<td><?php echo $fm->formatDate($pro["date_order"])?></td>
-                                <td class="status">
-                                <?php 
-                                    if($pro["status"]=='0'){
-                                        echo "pending";
-                                    }else{
-                                        echo "processed";
-                                    }
-                                ?>
-                                </td>
+                              
 							</tr>
 							<?php
 									}
