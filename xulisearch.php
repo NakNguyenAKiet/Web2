@@ -18,19 +18,8 @@
     $to = $_POST["priceto"];
     $key = $_POST["keyword"];
     
-    if($from == ''){
-        $from = '1';
-        $from = (string)$from;
-    } 
-    if($to == '') $to = '1000000000';
-        $to = (string)$to;
-
-        //$query = "SELECT * from tbl_product where productName LIKE '%$key%' AND catId LIKE '%$cat%' AND price >= {$from}";
-       // echo "<script>console.log(".$query.")</script>";
-    //echo "<script>alert('".$_POST["priceto"].$_POST["pricefrom"].$_POST["keyword"].$_POST["category"]."')</script>"; 
-
     $listPro = $pro->getbyallinformation($_POST);
-
+    
     if($listPro){
 			while ($product = $listPro->fetch_assoc()) {						
 			?>
@@ -45,13 +34,5 @@
 					}
 				}else {
 					echo "<h3 style='font-size:40px'>No products were found!</h3>";
-				}			
-
-    $show_alert = '<script>$("#formJoin .alert").show();</script>'; // Hiển thị thông báo lỗi
-    // Nếu tồn tại username thì thực thi đăng nhập
-
-    
-    //echo $show_alert . $_POST["keyword"];
-  
-
+				}	
 ?>

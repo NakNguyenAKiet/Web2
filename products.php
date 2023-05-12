@@ -38,7 +38,7 @@
 						>'.$i.'</li>';
 
 					}
-					echo "<input id='numPage' type='hidden' value='$pages'/> "
+					echo "<input id='numPage' type='hidden' value='$pages'/> ";
 				?>
 				
 			</ul>

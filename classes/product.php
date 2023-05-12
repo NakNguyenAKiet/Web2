@@ -47,6 +47,28 @@
             return $result;
         }
 
+        public function getbyallinformation_pages($data, $page){
+            $cat = $data["category"];
+            $from = $data["pricefrom"];
+            $to = $data["priceto"];
+            $key = $data["keyword"];
+            if($from == ''){
+            $from = '1';
+            }
+            $from1 = (string)$from;
+            if($to == '') $to = '1000000000';
+
+            $productInPage = 8;
+            $beginIndex = ($page-1)*$productInPage;
+            //$query = "SELECT * from tbl_product order by productId desc LIMIT $beginIndex,$productInPage";
+
+            $to1 = (string)$to;
+            $query = "SELECT * from tbl_product where productName LIKE '%$key%' AND catId LIKE '%$cat%' AND price >= '$from1' AND price <= '$to1'
+             order by productId desc LIMIT $beginIndex,$productInPage";
+            $result = $this->db->select($query);
+            return $result;
+        }
+
         public function insert_product($data,$files)
         {
             // $catName = $this->fm->validation($catName);
@@ -144,21 +166,6 @@
                         price='$price',
                         image='$unique_image'
                         where productId='$id'"; 
-                    // if($file_size > 2048){
-                    //     return "<span class = 'error'>Image size should be less than 2MB!</span>";
-                    // }             
-                    // elseif(in_array($file_ext, $permited) === false){
-
-                    //     return "<span class = 'error'>you can upload only:".implode(', ',$permited)." </span>";
-                    // }else{
-                    //     $query = "update tbl_product set
-                    //     productName='$productName',
-                    //     catId='$category',brandId='$brand',
-                    //     productDesc='$productDesc',type='$type',
-                    //     price='$price',
-                    //     image='$unique_image'
-                    //     where productId='$id'";
-                    // }
                 }else{
                     $query = "update tbl_product set
                      productName='$productName',
