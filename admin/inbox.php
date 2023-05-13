@@ -21,7 +21,7 @@
 		$shifted = $cart->del_ordered($_GET["delId"]);
 	}
 
-	$getAllOrder = $cart->get_all_order();
+	$getAllHoadon = $cart->getAllHoadon();
 
 ?>
 <style>
@@ -32,52 +32,78 @@ a:hover{
 </style>
         <div class="grid_10">
             <div class="box round first grid">
-                <h2>Inbox</h2>
-				<?php
+                <h2>Inbox <?php
 					if (isset($shifted)) {
 						echo $shifted;
 					}
-				?>
+				?></h2>
+				<div class="formordered">
+					<form action="#" method="POST">
+						<span>Filter Time:   </span>
+						<label for="datefrom">From: </label><input type="date" id="datefrom" name="datefrom" >
+						_
+						<label for="datefrom">To: </label><input type="date" id="dateto" name="dateto">
+
+						<input type="submit" value="Filter" name="submit">
+					</form>
+				</div>
+				
                 <div class="block">        
                     <table class="data display datatable" id="example">
 					<thead>
 						<tr>
-							<th>Serial No.</th>
-							<th>Date</th>
-							<th>Product</th>
-							<th>Quantity</th>
-							<th>Price</th>
-							<th>Cumtomer</th>
-							<th>Action</th>
+							<th width="20%">Date</th>
+							<th width="20%">Total Bill </th>
+							<th width="20%">Cumtomer</th>
+							<th width="20%">View Detail</th>
+							<th width="20%">Action</th>
 						</tr>
 					</thead>
 					<tbody>
 						<?php
-						$i=0;
-							if ($getAllOrder) {
-								while ($pro = $getAllOrder->fetch_assoc()) {
-									$i++;
-								
-						?>
-						<tr class="odd gradeX">
-							<td><?php echo $i?></td>
-							<td><?php echo $pro["date_order"]?></td>
-							<td><?php echo $pro["productName"]?></td>
-							<td><?php echo $pro["quantity"]?></td>
-							<td><?php echo $pro["price"]?></td>
-							<td><a href="customer.php?cusId=<?php echo $pro["customerId"]?>">Cumtomer</a></td>
-							<td><?php 
-                                    if($pro["status"]=='0'){										
-                                        echo "<a href='?shiftId=".$pro["id"]."'>pending</a>";
-                                    }else{
-                                        echo "<a href='?delId=".$pro["id"]."'>remove</a>";
-                                    }
-                                ?></td>
-						</tr>
-						<?php
+							if(isset($_POST["submit"])){
+								$getAllHoadon = $cart->getAllHoadonDate($_POST);	
+								$from = $_POST['datefrom'];
+								$to = $_POST['dateto'];
+								if ($from == "") {
+									$from = "Not set ";
 								}
+								if ($to == "") {
+									$to = "Not set ";
+								}							
+								echo "<h4>Get Order From: $from _ To: $to </h4>";
+								
+							}else{
+								$getAllHoadon = $cart->getAllHoadon();
 							}
-						?>
+					
+								if($getAllHoadon){
+									while ($order = $getAllHoadon->fetch_assoc()) {																			
+							?>
+							<tr>
+                                <td><?php echo $fm->formatDate($order["NgayLap"])?></td>
+                                
+								<td><?php echo $order["TongTien"]?></td>
+
+								<td><a href="customer.php?cusId=<?php echo $order["CustomerId"]?>">Cumtomer detail</a></td>
+                                <td>
+                                        <a href="hoadondetail.php?orderid=<?php echo $order["mahd"]?>">View</a> 
+                                </td>
+								<td>
+									<?php 
+                                    if($order["status"]=='0'){										
+                                        echo "<a href='?shiftId=".$order["mahd"]."'>pending</a>";
+                                    }else{
+                                        echo "<a href='#'>processed</a>";
+                                    }
+                                	?>
+								</td>
+						</tr>
+							</tr>
+							<?php
+									}
+								}
+							?>
 					</tbody>
 				</table>
                </div>

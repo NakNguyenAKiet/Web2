@@ -169,11 +169,26 @@
             return $result;
         }
 
-        public function get_all_order()
+        public function getAllHoadon()
         {
-            $query = "SELECT * FROM tbl_order";
+            $query = "SELECT * FROM hoadon";
             $result = $this->db->select($query);
             return $result;
+        }
+
+        public function getAllHoadonDate($data){
+            $from = $data['datefrom'];
+            $to = $data['dateto'];
+            if ($from == "") {
+                $from = "2000-01-01";
+            }
+            if ($to == "") {
+                $to = "2025-01-01";
+            }
+            $query = "SELECT * FROM hoadon where NgayLap >= '$from' and NgayLap <= '$to'";
+            $result = $this->db->select($query);
+            return $result;
+
         }
 
         public function get_ordered($cusId){
@@ -191,18 +206,18 @@
 
         public function set_shifted($id)
         {
-            $query = "UPDATE tbl_order SET status='1' WHERE id='$id'";
+            $query = "UPDATE hoadon SET status='1' WHERE mahd='$id'";
             $result = $this->db->update($query);
             if($result){
-                return '<span style="color: green">Update successfull !</span>';
+                return ':Update successfull !';
             }else {
-                return '<span style="color: red">Something wrong !!!</span>';               
+                return ':Something wrong !!!';               
             }
         }
 
         public function del_ordered($id)
         {
-            $query = "DELETE FROM tbl_order WHERE id='$id'";
+            $query = "DELETE FROM hoadon WHERE mahd='$id'";
 
             $result = $this->db->delete($query);
 
