@@ -8,11 +8,10 @@
 
 <?php
 	$fm = new Format();
-	$pro = new product();
     $user = new user();
 
 	if (isset($_GET['DelId']) && $_GET['DelId'] != NULL){
-		$del = $pro->del_pro($_GET['DelId']);
+		$del = $user->del_user($_GET['DelId']);
 	}
 ?>
 <div class="grid_10">
@@ -39,7 +38,7 @@
 			<tbody>
 				<?php
 					$list = $user->getalluser();
-
+                if($list){
 					while ($result = $list->fetch_assoc()) {					
 
 				?>
@@ -54,10 +53,20 @@
                             echo "Staff";
                         }
                         ?></td>					
-						<td><a href="productedit.php?productId=<?php echo $result['productId']; ?>">Edit</a> || <a href="?DelId=<?php echo $result['productId']; ?>">Delete</a></td>
+						<td><a href="staffedit.php?adminId=<?php echo $result['adminId']; ?>">Edit</a> || 
+                        <a onclick="deleteask<?php echo $result['adminId']?>()" href="#">Delete</a></td>
+							<script>
+							function deleteask<?php echo $result['adminId']?>() {
+								var result = confirm("Are you sure you want to delete id= <?php echo $result['adminId']?>?");
+								
+								if (result == true) {
+									window.location.href = "stafflist.php?DelId=<?php echo $result['adminId']?>";	
+								}
+							}
+							</script>
 					</tr>
 				<?php
-					}
+					}}
 				?>
 			</tbody>
 		</table>

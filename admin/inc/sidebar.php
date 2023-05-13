@@ -13,9 +13,9 @@
                                 </ul>
                             </li>
                         ';
-                    }else {
-                        echo '
-                        <li><a class="menuitem">Category</a>
+                    }
+                ?>
+                <li><a class="menuitem">Category</a>
                             <ul class="submenu">
                                 <li><a href="catadd.php">Add Category</a> </li>
                                 <li><a href="catlist.php">Category List</a> </li>
@@ -39,10 +39,6 @@
                                 <li><a href="sliderlist.php">List Slider</a> </li>
                             </ul>
                         </li>
-                        ';
-                    }
-                ?>
-                
                <!-- <li><a class="menuitem">Site Option</a>
                     <ul class="submenu">
                         <li><a href="titleslogan.php">Title & Slogan</a></li>

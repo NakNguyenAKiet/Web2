@@ -41,6 +41,7 @@
 				<?php
 					$list = $pro->show_product();
 
+					if ($list) {				
 					while ($result = $list->fetch_assoc()) {					
 					$cat = new category();
 					$brand = new brand();
@@ -54,10 +55,23 @@
 						<td><?php echo $result['type']; ?></td>
 						<td> <?php echo $result['price']; ?></td>
 						<td> <img src="uploads/<?php echo $result['image']; ?> " alt="" width= '50px'> </td>
-						<td><a href="productedit.php?productId=<?php echo $result['productId']; ?>">Edit</a> || <a href="?DelId=<?php echo $result['productId']; ?>">Delete</a></td>
+						<td>
+							<a href="productedit.php?productId=<?php echo $result['productId']; ?>">Edit</a>
+							 || 						 
+							 <a onclick="deleteask<?php echo $result['productId']?>()" href="#">Delete</a></td>
+							<script>
+							function deleteask<?php echo $result['productId']?>() {
+								var result = confirm("Are you sure you want to delete product id= <?php echo $result['productId']?>?");
+								
+								if (result == true) {
+									window.location.href = "productlist.php?DelId=<?php echo $result['productId']?>";	
+								}
+							}
+							</script>
 					</tr>
 				<?php
 					}
+				}
 				?>
 			</tbody>
 		</table>
