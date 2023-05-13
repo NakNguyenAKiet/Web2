@@ -45,8 +45,14 @@
                     Session::set('adminId',$value['adminId']);
                     Session::set('adminUser',$value['adminUser']);
                     Session::set('adminName',$value['adminName']);
+                    Session::set('level',$value['level']);
+
                     //Session::set('adminPass',$value['adminPass']);
-                    header('Location:index.php');
+                    if($value['level'] == 0){
+                        header('Location:admin.php');
+                    }else{
+                        header('Location:index.php');
+                    }
 
 
                 }else{
