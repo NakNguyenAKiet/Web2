@@ -13,11 +13,16 @@
     $sta = new statistic();
 
     if(isset($_REQUEST['submit_time'])){
-        if(isset($_POST['typeSta']) && $_POST['typeSta'] != -1){
-            $getStatistic = $sta->get_type_statistic($_POST);
+        if($_POST["staFrom"]<$_POST["staTo"]){
+            if(isset($_POST['typeSta']) && $_POST['typeSta'] != -1){
+                $getStatistic = $sta->get_type_statistic($_POST);
+            }
+            else{
+                $getStatistic = $sta->get_date_statistic($_POST);
+            }
         }
         else{
-            $getStatistic = $sta->get_date_statistic($_POST);
+            $getStatistic = $sta->get_all_statistic();
         }
     }
     else{
@@ -77,7 +82,12 @@
 
 
     if(isset($_REQUEST['submit_pro'])){
-        $getBestSeller = $sta->get_Sell($_POST);
+        if($_POST["staProTo"] > $_POST["staProFrom"]){
+            $getBestSeller = $sta->get_Sell($_POST); 
+        }
+        else{
+            $getBestSeller = $sta->get_AllSell();
+        }
     }
     else{
         $getBestSeller = $sta->get_AllSell();
@@ -110,6 +120,11 @@
 <div class="grid_10">
     <div class="box round first grid">
         <h2>Statistic</h2>
+        <?php
+            if(empty($chart_data) or empty($chart_data_pro)){
+                echo "<h2>No Product Was Sold</h2>";
+            }
+        ?>
         <div class="formordered"> 
             <form action="" method="POST">
                 <span>Filter Times: </span>
