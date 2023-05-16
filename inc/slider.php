@@ -54,7 +54,7 @@
 				?>
 				<div class="listview_1_of_2 images_1_of_2">
 					<div class="listimg listimg_2_of_1">
-						 <a href="preview.php"> <img src="admin/uploads/<?php echo $LastestMacbook['image']?>" alt="" /></a>
+						 <a href="details.php?proid=<?php echo $LastestMacbook['productId']?>"> <img src="admin/uploads/<?php echo $LastestMacbook['image']?>" alt="" /></a>
 					</div>					
 				    <div class="text list_2_of_1">
 						<h2>Macbook</h2>
@@ -65,7 +65,7 @@
 
 				<div class="listview_1_of_2 images_1_of_2">
 					<div class="listimg listimg_2_of_1">
-						  <a href="preview.php"><img src="admin/uploads/<?php echo $LastestSamsung['image']?>" alt="" / ></a>
+						  <a href="details.php?proid=<?php echo $LastestSamsung['productId']?>"><img src="admin/uploads/<?php echo $LastestSamsung['image']?>" alt="" / ></a>
 					</div>
 					<div class="text list_2_of_1">
 						  <h2>Samsung</h2>
@@ -77,7 +77,7 @@
 			<div class="section group">
 				<div class="listview_1_of_2 images_1_of_2">
 					<div class="listimg listimg_2_of_1">
-						 <a href="preview.php"> <img src="admin/uploads/<?php echo $LastestIphone['image']?>" alt="" /></a>
+						 <a href="details.php?proid=<?php echo $LastestIphone['productId']?>"> <img src="admin/uploads/<?php echo $LastestIphone['image']?>" alt="" /></a>
 					</div>
 				    <div class="text list_2_of_1">
 						<h2>Iphone</h2>
@@ -87,7 +87,7 @@
 			   </div>			
 				<div class="listview_1_of_2 images_1_of_2">
 					<div class="listimg listimg_2_of_1">
-						  <a href="preview.php"><img src="admin/uploads/<?php echo $LastestCannon['image']?>" alt="" /></a>
+						  <a href="details.php?proid=<?php echo $LastestCannon['productId']?>"><img src="admin/uploads/<?php echo $LastestCannon['image']?>" alt="" /></a>
 					</div>
 					<div class="text list_2_of_1">
 						  <h2>Canon</h2>

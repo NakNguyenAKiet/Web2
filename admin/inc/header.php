@@ -24,6 +24,7 @@
     <link rel="stylesheet" type="text/css" href="css/nav.css" media="screen" />
     <link href="css/table/demo_page.css" rel="stylesheet" type="text/css" />
     <!-- BEGIN: load jquery -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
     <script src="js/jquery-1.6.4.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="js/jquery-ui/jquery.ui.core.min.js"></script>
     <script src="js/jquery-ui/jquery.ui.widget.min.js" type="text/javascript"></script>
@@ -82,7 +83,7 @@
                 <li class="ic-dashboard"><a href="index.php"><span>Dashboard</span></a> </li>
                 <li class="ic-form-style"><a href="profile.php"><span>User Profile</span></a></li>
 				<li class="ic-grid-tables"><a href="inbox.php"><span>Inbox</span></a></li>
-                <li class="ic-charts"><a href=""><span>Visit Website</span></a></li>
+                <!-- <li class="ic-charts"><a href=""><span>Visit Website</span></a></li> -->
                 <li class="ic-form-style"><a href="statistic.php"><span>Statistic</span></a></li>
             </ul>
         </div>
